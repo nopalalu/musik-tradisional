@@ -37,6 +37,10 @@
             </a>
         @endif
 
+        <div class="specimen-head" data-reveal>
+            <p class="specimen-no">Arsip № {{ str_pad($alat->id, 3, '0', STR_PAD_LEFT) }}</p>
+        </div>
+
         <div class="detail-container">
 
             <!-- IMAGE -->
@@ -65,9 +69,9 @@
                 <h1>{{ $alat->nama }}</h1>
 
                 <div class="meta">
-                    Pulau: {{ $alat->pulau->nama }}<br>
-                    Sumber bunyi: {{ $alat->sumber_bunyi }}<br>
-                    Kategori: {{ $alat->kategori }}
+                    <div class="meta-row"><span>Pulau</span><strong>{{ optional($alat->pulau)->nama ?? '-' }}</strong></div>
+                    <div class="meta-row"><span>Sumber bunyi</span><strong>{{ $alat->sumber_bunyi ?? '-' }}</strong></div>
+                    <div class="meta-row"><span>Kategori</span><strong>{{ $alat->kategori ?? '-' }}</strong></div>
                 </div>
 
                 <p class="description">
