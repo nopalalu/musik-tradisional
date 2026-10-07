@@ -17,28 +17,27 @@
     $delay = ($item->id % 6) * 70;
 @endphp
 
-<article class="arsip-card" data-reveal style="transition-delay: {{ $delay }}ms">
-    <div class="arsip-media">
+<a href="{{ url($url) }}" class="arsip-card" data-reveal style="transition-delay: {{ $delay }}ms">
+    <span class="arsip-frame"></span>
+
+    <span class="arsip-media">
         <img src="{{ $item->gambar ? gambar_alat($item->gambar) : asset('assets/img/default.png') }}"
             alt="{{ $item->nama }}" loading="lazy">
+        <span class="arsip-shine"></span>
         <span class="arsip-tick t1"></span>
         <span class="arsip-tick t2"></span>
         <span class="arsip-tick t3"></span>
         <span class="arsip-tick t4"></span>
         <span class="arsip-no">№ {{ $no }}</span>
-    </div>
+    </span>
 
-    <div class="arsip-body">
+    <span class="arsip-body">
         @if ($origin)
-            <p class="arsip-origin">{{ strtoupper($origin) }}</p>
+            <span class="arsip-origin">{{ strtoupper($origin) }}</span>
         @endif
 
-        <h3 class="arsip-title">{{ $item->nama }}</h3>
+        <span class="arsip-title">{{ $item->nama }}<i>&rarr;</i></span>
 
-        <p class="arsip-desc">{{ Str::limit($item->deskripsi, 60) }}</p>
-
-        <a href="{{ url($url) }}" class="arsip-cta">
-            <span>Buka arsip</span><i>→</i>
-        </a>
-    </div>
-</article>
+        <span class="arsip-desc">{{ Str::limit($item->deskripsi, 60) }}</span>
+    </span>
+</a>
