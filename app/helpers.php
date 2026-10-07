@@ -20,7 +20,12 @@ if (!function_exists('gambar_alat')) {
             return asset($filename);
         }
 
-        // ✅ PRIORITAS: storage modern
+        // ✅ PRIORITAS: file fisik di docroot (htdocs/storage/img) - layout server InfinityFree
+        if (file_exists(public_path('storage/img/' . $filename))) {
+            return asset('storage/img/' . $filename);
+        }
+
+        // 🔁 Storage disk standar Laravel
         if (Storage::disk('public')->exists('img/' . $filename)) {
             return asset('storage/img/' . $filename);
         }
@@ -50,7 +55,12 @@ if (!function_exists('audio_alat')) {
             return asset($filename);
         }
 
-        // ✅ storage modern
+        // ✅ PRIORITAS: file fisik di docroot (htdocs/storage/audio) - layout server InfinityFree
+        if (file_exists(public_path('storage/audio/' . $filename))) {
+            return asset('storage/audio/' . $filename);
+        }
+
+        // 🔁 Storage disk standar Laravel
         if (Storage::disk('public')->exists('audio/' . $filename)) {
             return asset('storage/audio/' . $filename);
         }
