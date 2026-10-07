@@ -5,15 +5,20 @@
 
         <h2 class="mb-3">Hasil Pencarian</h2>
 
-        <p class="text-muted">
-            {{ $data->total() }} hasil ditemukan
-            @if ($q)
-                | Kata kunci: <strong>{{ $q }}</strong>
-            @endif
-            @if (!empty($kategori))
-                | Kategori: <strong>{{ $kategori }}</strong>
-            @endif
-        </p>
+        <div class="page-head" data-reveal>
+            <p class="page-eyebrow">Pencarian Arsip</p>
+            <h1 class="page-title">Hasil Pencarian</h1>
+            <div class="page-rule"></div>
+            <p class="page-sub">
+                <strong>{{ $data->total() }}</strong> hasil ditemukan
+                @if ($q)
+                    untuk &ldquo;{{ $q }}&rdquo;
+                @endif
+                @if (!empty($kategori))
+                    &middot; Kategori: <strong>{{ $kategori }}</strong>
+                @endif
+            </p>
+        </div>
 
         <div class="row g-4 mt-4">
 
