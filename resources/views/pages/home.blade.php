@@ -4,10 +4,15 @@
     <div class="hero">
         <div class="hero-content">
 
+            {{-- ===== EYEBROW ===== --}}
+            <p class="hero-eyebrow">Arsip Bunyi Nusantara</p>
+
             {{-- ===== TITLE ===== --}}
             <h1 class="hero-title">
                 Alat Musik Tradisional Indonesia
             </h1>
+
+            <div class="hero-rule"></div>
 
             {{-- ===== SUBTITLE (DIPERSINGKAT) ===== --}}
             <p class="hero-subtitle">
