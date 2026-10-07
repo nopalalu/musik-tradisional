@@ -76,7 +76,7 @@
     <section class="gamelan-section" data-reveal>
         <p class="gamelan-eyebrow">Ruang Bunyi</p>
         <h2 class="gamelan-title">Sentuh &amp; Dengarkan</h2>
-        <p class="gamelan-sub">Lima bilah perunggu dalam laras slendro &mdash; ketuk bilahnya untuk membunyikan.</p>
+        <p class="gamelan-sub">Lima bilah perunggu bernada pentatonik &mdash; ketuk bilahnya untuk membunyikan.</p>
         <div class="gamelan-pads" id="gamelanPads">
             <button type="button" class="gamelan-pad" data-freq="261.63" aria-label="Nada 1"><span class="pad-boss"></span><span class="pad-num">1</span></button>
             <button type="button" class="gamelan-pad" data-freq="293.66" aria-label="Nada 2"><span class="pad-boss"></span><span class="pad-num">2</span></button>
