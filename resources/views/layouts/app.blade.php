@@ -24,6 +24,9 @@
     <link rel="stylesheet" href="{{ asset('assets/css/hero.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/search.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/card.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/intro.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/cursor.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/gamelan.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/map.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/detail.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/quiz-modal.css') }}">
@@ -35,6 +38,19 @@
 </head>
 
 <body>
+    <!-- ================= INTRO CURTAIN ================= -->
+    <div id="introCurtain" aria-hidden="true">
+        <div class="intro-inner">
+            <p class="intro-eyebrow">Arsip Bunyi Nusantara</p>
+            <p class="intro-word">Musantara</p>
+            <div class="intro-line"><span></span></div>
+        </div>
+    </div>
+    <noscript><style>#introCurtain{display:none!important}</style></noscript>
+    <script>setTimeout(function(){var c=document.getElementById('introCurtain');if(c){c.style.display='none';}document.body.classList.remove('intro-lock');},6000);</script>
+
+    <!-- ================= CURSOR GLOW ================= -->
+    <div id="cursorGlow" aria-hidden="true"></div>
 
     <!-- GLOBAL ELEMENT -->
     <div id="tooltip"></div>
@@ -70,6 +86,10 @@
     <script src="{{ asset('assets/js/map.js') }}" defer></script>
 
     <script src="{{ asset('assets/js/search.js') }}"></script>
+    <script src="{{ asset('assets/js/intro.js') }}" defer></script>
+    <script src="{{ asset('assets/js/cursor.js') }}" defer></script>
+    <script src="{{ asset('assets/js/reveal.js') }}" defer></script>
+    <script src="{{ asset('assets/js/gamelan.js') }}" defer></script>
 
     @stack('scripts')
 
