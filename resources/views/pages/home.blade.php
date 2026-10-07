@@ -30,9 +30,9 @@
 
                 <div class="quiz-info">
                     @if ($raw >= 3)
-                        ✅ Target tercapai
+                        Target tercapai
                     @else
-                        🎯 {{ $count }}/3 eksplor
+                        {{ $count }}/3 eksplor
                     @endif
                 </div>
 
@@ -44,15 +44,15 @@
                 {{-- BUTTON --}}
                 @if (session('explored_count', 0) < 3)
                     <button id="quizLocked" class="btn-quiz-hero locked">
-                        🎮 Mulai Kuis
+                        Mulai Kuis
                     </button>
 
                     <p class="quiz-note">
-                        🔒 Eksplor minimal 3 alat musik dulu
+                        Eksplor minimal 3 alat musik dulu
                     </p>
                 @else
                     <a href="/quiz-global" class="btn-quiz-hero">
-                        🎮 Mulai Kuis
+                        Mulai Kuis
                     </a>
                 @endif
 
