@@ -1,16 +1,33 @@
+/* ============================================================
+   ARSIP BUNYI NUSANTARA — design tokens
+   Warm charcoal + gamelan bronze. Satu aksen, tanpa gradient
+   biru/ungu, tanpa neon.
+============================================================ */
+:root {
+    --bg: #14110a;
+    --bg-soft: #1c1710;
+    --card: #1f1a12;
+    --ink: #f0e9d6;
+    --muted: #a89a7c;
+    --bronze: #c9973f;
+    --bronze-hi: #ddb25e;
+    --bronze-deep: #8f6c26;
+    --bronze-ink: #1a1408;
+    --line: rgba(201, 151, 63, 0.16);
+    --line-strong: rgba(201, 151, 63, 0.42);
+    --serif: 'Fraunces', 'Georgia', serif;
+}
+
 body {
     margin: 0;
-    font-family: 'Poppins', sans-serif;
-    color: #e2e8f0;
+    font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+    color: var(--ink);
     padding-top: 80px;
-    background:
-        radial-gradient(circle at 20% 20%, #1e3a8a 0%, #0f172a 45%, #020617 100%);
+    background: var(--bg);
     overflow-x: hidden;
-    opacity: 1;
-    transition: opacity 0.3s ease;
-    font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
     position: relative;
     z-index: 1;
+    transition: opacity 0.3s ease;
 }
 
 /* fade in */
@@ -23,109 +40,66 @@ body.fade-out {
     opacity: 0;
 }
 
-@keyframes fadeBody {
-    to {
-        opacity: 1;
-    }
+/* ---- film grain: satu-satunya "efek" global ---- */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: 60;
 }
 
-/* Floating glow */
-body::before {
+/* ---- ambient hangat, sangat tipis ---- */
+body::after {
     content: "";
     position: fixed;
     width: 900px;
     height: 900px;
-    background: radial-gradient(circle, rgba(34, 197, 94, 0.18), transparent 60%);
-    top: -250px;
-    left: -250px;
-    animation: floatGlow 14s infinite alternate ease-in-out;
+    background: radial-gradient(circle, rgba(201, 151, 63, 0.06), transparent 62%);
+    top: -280px;
+    left: -200px;
     z-index: -1;
     pointer-events: none;
-}
-
-@keyframes floatGlow {
-    from {
-        transform: translate(0, 0);
-    }
-
-    to {
-        transform: translate(180px, 150px);
-    }
-}
-
-/* Batik corner decoration */
-body::after {
-    content: "";
-    position: fixed;
-    top: -180px;
-    right: -180px;
-    width: 800px;
-    height: 800px;
-
-    background: url('/assets/img/batik.jpg') no-repeat center;
-    background-size: cover;
-
-    opacity: 0.08;
-    transform: rotate(25deg);
-
-    filter: blur(2px);
-
-    -webkit-mask-image: radial-gradient(circle, black 60%, transparent 85%);
-    mask-image: radial-gradient(circle, black 60%, transparent 85%);
-
-    pointer-events: none;
-    z-index: -1;
-    animation: floatBatik 20s infinite alternate ease-in-out;
-}
-
-@keyframes floatBatik {
-    from {
-        transform: rotate(25deg) translate(0, 0);
-    }
-
-    to {
-        transform: rotate(28deg) translate(-40px, 30px);
-    }
 }
 
 h1,
 h2,
 h3 {
-    font-weight: 700;
-    letter-spacing: 0.5px;
+    font-family: var(--serif);
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    color: var(--ink);
 }
 
 p {
-    line-height: 1.6;
+    line-height: 1.65;
 }
 
 .main-wrapper {
     position: relative;
     z-index: 1;
-    padding-bottom: 100px;
-    opacity: 1;
-    animation: none;
     padding: 25px 20px 0;
+    padding-bottom: 100px;
     overflow: visible !important;
 }
 
-@keyframes fadePage {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.section-title {
+    margin-top: 64px;
+    margin-bottom: 22px;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
 }
 
-
-.section-title {
-    margin-top: 60px;
-    margin-bottom: 20px;
-    font-size: 28px;
+.section-title::before {
+    content: "";
+    width: 34px;
+    height: 2px;
+    background: var(--bronze);
+    flex: none;
 }
 
 .container {
@@ -134,47 +108,40 @@ p {
     overflow: visible !important;
 }
 
-/* ================= NAVBAR ================= */
-/* ================= HERO ================= */
-/* ================= SEARCH ================= */
-/* === CARD === */
-/* ================= MAP ================= */
-/* ================= RIPPLE ================= */
-/* ================= TABLE ================= */
-/* ================= FOOTER ================= */
 /* ================= TOOLTIP ================= */
 #tooltip {
     position: fixed;
     top: 0;
     left: 0;
-
-    background: #111827;
-    color: white;
+    background: #241d10;
+    color: var(--ink);
     padding: 6px 12px;
     border-radius: 8px;
-
+    border: 1px solid var(--line);
     pointer-events: none;
     opacity: 0;
-
     z-index: 9999999;
     transform: translate(-50%, -120%);
     transition: opacity 0.15s ease;
+    font-size: 13px;
 }
 
 .table {
-    background: rgba(30, 41, 59, 0.7);
-    color: white;
+    background: rgba(31, 26, 18, 0.7);
+    color: var(--ink);
 }
 
 .table thead {
-    background: rgba(51, 65, 85, 0.7);
+    background: rgba(45, 37, 24, 0.7);
 }
 
 footer {
     margin-top: 120px;
     text-align: center;
-    color: #64748b;
+    color: var(--muted);
     font-size: 14px;
+    border-top: 1px solid var(--line);
+    padding-top: 32px;
 }
 
 /* ================= TOAST ================= */
@@ -182,61 +149,53 @@ footer {
     position: fixed;
     bottom: 40px;
     right: 40px;
-
-    background: #22c55e;
-    color: white;
+    background: var(--bronze);
+    color: var(--bronze-ink);
     padding: 14px 22px;
     border-radius: 12px;
     font-weight: 600;
-
     opacity: 0;
     transform: translateY(20px);
     transition: all 0.3s ease;
-
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     z-index: 9999;
-
     pointer-events: none;
 }
 
-/* SHOW */
 .custom-toast.show {
     opacity: 1;
     transform: translateY(0);
 }
 
-/* VARIANT */
 .custom-toast.success {
-    background: #22c55e;
+    background: var(--bronze);
+    color: var(--bronze-ink);
 }
 
 .custom-toast.error {
-    background: #ef4444;
+    background: #b0483a;
+    color: #fff5ef;
 }
 
 .custom-toast.info {
-    background: #3b82f6;
+    background: #3a3f4a;
+    color: #e8e4d8;
 }
 
-/* SHAKE (buat salah) */
 .custom-toast.shake {
     animation: shake 0.3s;
 }
 
 /* ================= MOBILE FIX ================= */
 @media (max-width: 768px) {
-
     .custom-toast {
         top: 100px;
         bottom: auto;
         left: 50%;
         right: auto;
-
         transform: translate(-50%, -20px);
-
         width: calc(100% - 32px);
         max-width: 340px;
-
         text-align: center;
     }
 
@@ -247,35 +206,18 @@ footer {
 
 /* ================= ANIMATION ================= */
 @keyframes shake {
-    0% {
-        transform: translate(-50%, 0);
-    }
-
-    25% {
-        transform: translate(-52%, 0);
-    }
-
-    50% {
-        transform: translate(-48%, 0);
-    }
-
-    75% {
-        transform: translate(-52%, 0);
-    }
-
-    100% {
-        transform: translate(-50%, 0);
-    }
+    0% { transform: translate(-50%, 0); }
+    25% { transform: translate(-52%, 0); }
+    50% { transform: translate(-48%, 0); }
+    75% { transform: translate(-52%, 0); }
+    100% { transform: translate(-50%, 0); }
 }
 
 .btn-quiz-hero.shake {
     animation: shake 0.3s;
 }
 
-/* ===== DETAIL PAGE ===== */
-/* ===== QUIZ ===== */
 /* ===== SKELETON LOADING ===== */
-
 #pageLoader {
     opacity: 1;
     transition: opacity 0.4s ease;
@@ -309,7 +251,7 @@ footer {
     left: 0;
     height: 3px;
     width: 0%;
-    background: #00ffaa;
+    background: var(--bronze);
     z-index: 9999;
     transition: width 0.3s ease;
 }
@@ -333,28 +275,26 @@ footer {
     display: block;
     padding: 8px 14px;
     border-radius: 8px;
-    background: rgba(30, 41, 59, 0.8);
-    color: #cbd5f5;
+    background: var(--card);
+    color: var(--muted);
     text-decoration: none;
-    border: 1px solid #334155;
+    border: 1px solid var(--line);
     font-size: 14px;
     transition: 0.2s;
 }
 
-/* hover */
 .pagination li a:hover {
-    background: #2563eb;
-    color: white;
+    background: var(--bronze);
+    color: var(--bronze-ink);
+    border-color: var(--bronze);
 }
 
-/* active */
 .pagination .active span {
-    background: #16a34a;
-    color: white;
-    border: none;
+    background: var(--bronze);
+    color: var(--bronze-ink);
+    border: 1px solid var(--bronze);
 }
 
-/* disabled */
 .pagination .disabled span {
     opacity: 0.4;
 }
@@ -362,10 +302,9 @@ footer {
 .pagination+p,
 .pagination-info,
 .small.text-muted {
-    color: #94a3b8 !important;
-    /* abu terang */
+    color: var(--muted) !important;
 }
 
 .text-muted {
-    color: #94a3b8 !important;
+    color: var(--muted) !important;
 }
