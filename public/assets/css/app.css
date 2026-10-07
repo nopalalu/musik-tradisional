@@ -308,3 +308,44 @@ footer {
 .text-muted {
     color: var(--muted) !important;
 }
+
+/* ================= PAGE HEAD — kepala halaman arsip ================= */
+.page-head {
+    text-align: center;
+    padding: 44px 16px 10px;
+}
+
+.page-eyebrow {
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--bronze);
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.page-title {
+    font-family: var(--serif);
+    font-size: clamp(32px, 6vw, 54px);
+    font-weight: 600;
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+}
+
+.page-rule {
+    width: 56px;
+    height: 2px;
+    background: var(--bronze);
+    margin: 18px auto;
+}
+
+.page-sub {
+    color: var(--muted);
+    font-size: 14.5px;
+    margin-bottom: 0;
+}
+
+.page-sub strong {
+    color: var(--bronze-hi);
+    font-weight: 600;
+}
