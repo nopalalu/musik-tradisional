@@ -1,3 +1,7 @@
+/* ===============================
+   MAP — kepulauan perunggu arsip
+=============================== */
+
 .map-section {
     margin-top: 120px;
     text-align: center;
@@ -34,8 +38,11 @@
     }
 }
 
+/* pulau: perunggu tua, seperti relief */
 .map-svg path {
-    fill: #22c55e;
+    fill: #6f5a30;
+    stroke: #14110a;
+    stroke-width: 2;
     cursor: pointer;
 
     transition:
@@ -49,8 +56,8 @@
 }
 
 .map-svg path:hover {
-    fill: #3b82f6;
-    filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.6));
+    fill: #c9973f;
+    filter: drop-shadow(0 0 12px rgba(201, 151, 63, 0.55));
 }
 
 .map-svg path.dim {
