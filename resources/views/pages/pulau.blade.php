@@ -3,10 +3,13 @@
 @section('content')
     <div class="container">
 
-        <!-- TITLE -->
-        <h1 class="title-page">
-            Alat Musik - {{ $pulau->nama }}
-        </h1>
+        <!-- HEADER ARSIP -->
+        <div class="page-head" data-reveal>
+            <p class="page-eyebrow">Koleksi Pulau</p>
+            <h1 class="page-title">{{ $pulau->nama }}</h1>
+            <div class="page-rule"></div>
+            <p class="page-sub"><strong>{{ $alat->count() }}</strong> alat musik terarsip</p>
+        </div>
 
         <!-- SKELETON LOADER -->
         <div id="pageLoader" class="mt-4">
