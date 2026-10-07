@@ -140,27 +140,27 @@ setTimeout(() => {
     }
 })();
 
-// ================= v15 — CAHAYA LENTERA =================
-// Cahaya hangat mengikuti kursor dengan lerp halus.
+// ================= v17 — PARALLAX MEGA MENDUNG =================
+// Lapisan awan bergeser sangat halus mengikuti kursor (paling jauh).
 (function () {
-    var glow = document.querySelector('.cursor-glow');
-    if (!glow) return;
+    var mega = document.querySelector('.mega-base');
+    if (!mega) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     if (window.matchMedia('(hover: none)').matches) return;
 
-    var tx = innerWidth / 2, ty = innerHeight / 3, cx = tx, cy = ty, raf = null, shown = false;
+    var tx = 0, ty = 0, cx = 0, cy = 0, raf = null;
 
     document.addEventListener('pointermove', function (e) {
-        tx = e.clientX; ty = e.clientY;
-        if (!shown) { shown = true; glow.classList.add('on'); cx = tx; cy = ty; }
+        tx = e.clientX / window.innerWidth - 0.5;
+        ty = e.clientY / window.innerHeight - 0.5;
         if (!raf) raf = requestAnimationFrame(tick);
     }, { passive: true });
 
     function tick() {
-        cx += (tx - cx) * 0.08;
-        cy += (ty - cy) * 0.08;
-        glow.style.translate = cx.toFixed(1) + 'px ' + cy.toFixed(1) + 'px';
-        if (Math.abs(tx - cx) > 0.4 || Math.abs(ty - cy) > 0.4) {
+        cx += (tx - cx) * 0.05;
+        cy += (ty - cy) * 0.05;
+        mega.style.translate = (cx * 10).toFixed(1) + 'px ' + (cy * 6).toFixed(1) + 'px';
+        if (Math.abs(tx - cx) > 0.0005 || Math.abs(ty - cy) > 0.0005) {
             raf = requestAnimationFrame(tick);
         } else { raf = null; }
     }
