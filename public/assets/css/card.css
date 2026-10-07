@@ -1,109 +1,183 @@
 /* ===============================
-   CARD — kartu katalog arsip
-   Flat warm-charcoal, hairline perunggu.
-   Tanpa glass, tanpa gradient.
+   KARTU ARSIP — specimen catalog,
+   bukan kartu template.
 =============================== */
 
-.card-custom {
-    display: flex;
-    flex-direction: column;
+/* --- reveal on scroll --- */
+[data-reveal] {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.22, 0.8, 0.3, 1);
+}
+
+[data-reveal].in {
+    opacity: 1;
+    transform: none;
+}
+
+.arsip-card {
+    position: relative;
     height: 100%;
     background: var(--card);
     border: 1px solid var(--line);
-    border-radius: 14px;
+    border-radius: 6px;
     overflow: hidden;
     transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.28);
 }
 
-.card-custom:hover {
+.arsip-card:hover {
     transform: translateY(-6px);
     border-color: var(--line-strong);
-    box-shadow: 0 22px 48px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 24px 50px rgba(0, 0, 0, 0.55);
 }
 
-/* IMAGE */
-.card-img-wrapper {
+/* --- media: sepia arsip -> warna penuh saat hover --- */
+.arsip-media {
     position: relative;
-    height: 190px;
+    aspect-ratio: 4 / 3;
     overflow: hidden;
+    background: #0f0c07;
 }
 
-.card-img-wrapper img {
+.arsip-media img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    filter: sepia(0.42) saturate(0.82) contrast(1.03);
     transform: scale(1.01);
-    transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: filter 0.6s ease, transform 0.7s cubic-bezier(0.22, 0.8, 0.3, 1);
 }
 
-.card-custom:hover .card-img-wrapper img {
+.arsip-card:hover .arsip-media img {
+    filter: sepia(0) saturate(1.12) contrast(1.02);
     transform: scale(1.07);
 }
 
-/* OVERLAY — warm, bukan biru */
-.img-overlay {
+/* --- corner ticks: tanda bingkai arsip --- */
+.arsip-tick {
     position: absolute;
-    inset: 0;
-    background: linear-gradient(to top,
-            rgba(20, 17, 10, 0.85),
-            rgba(20, 17, 10, 0.25),
-            transparent);
+    width: 16px;
+    height: 16px;
+    border: 0 solid var(--bronze);
+    opacity: 0.85;
+    transition: all 0.35s ease;
+    z-index: 2;
 }
 
-/* BODY */
-.card-body {
+.arsip-tick.t1 { top: 10px; left: 10px; border-top-width: 2px; border-left-width: 2px; }
+.arsip-tick.t2 { top: 10px; right: 10px; border-top-width: 2px; border-right-width: 2px; }
+.arsip-tick.t3 { bottom: 10px; left: 10px; border-bottom-width: 2px; border-left-width: 2px; }
+.arsip-tick.t4 { bottom: 10px; right: 10px; border-bottom-width: 2px; border-right-width: 2px; }
+
+.arsip-card:hover .arsip-tick {
+    width: 22px;
+    height: 22px;
+    opacity: 1;
+}
+
+/* --- nomor katalog --- */
+.arsip-no {
+    position: absolute;
+    top: 10px;
+    left: 34px;
+    z-index: 2;
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: 600;
+    color: var(--bronze-hi);
+    background: rgba(20, 17, 10, 0.78);
+    border: 1px solid var(--line);
+    padding: 4px 9px;
+    border-radius: 3px;
+}
+
+/* --- body --- */
+.arsip-body {
+    padding: 20px 20px 22px;
     display: flex;
     flex-direction: column;
-    flex: 1;
-    padding: 18px 18px 20px;
+    gap: 8px;
 }
 
-/* TITLE — serif */
-.card-body h5 {
-    font-family: var(--serif);
+.arsip-origin {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--bronze);
     font-weight: 600;
-    font-size: 20px;
-    letter-spacing: 0.2px;
-    margin-bottom: 8px;
-    color: var(--ink);
+    margin: 0;
 }
 
-/* DESC */
-.card-desc {
+.arsip-title {
+    font-family: var(--serif);
+    font-size: 23px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    margin: 0;
+    color: var(--ink);
+    /* garis bawah menyapu saat hover */
+    background-image: linear-gradient(var(--bronze), var(--bronze));
+    background-size: 0% 2px;
+    background-repeat: no-repeat;
+    background-position: left calc(100% - 1px);
+    transition: background-size 0.4s ease;
+    display: inline-block;
+    align-self: flex-start;
+    padding-bottom: 3px;
+}
+
+.arsip-card:hover .arsip-title {
+    background-size: 100% 2px;
+}
+
+.arsip-desc {
     font-size: 13.5px;
     color: var(--muted);
-    line-height: 1.6;
+    line-height: 1.65;
+    margin: 0;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    margin-bottom: auto;
 }
 
-/* BUTTON — perunggu solid */
-.btn-detail {
-    display: block;
-    margin-top: 18px;
-    text-align: center;
-    padding: 11px;
-    border-radius: 10px;
-    background: var(--bronze);
-    color: var(--bronze-ink);
+/* --- CTA --- */
+.arsip-cta {
+    margin-top: 10px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     text-decoration: none;
-    font-weight: 700;
-    font-size: 14px;
-    transition: all 0.25s ease;
+    color: var(--bronze-hi);
+    font-size: 13.5px;
+    font-weight: 600;
+    letter-spacing: 0.6px;
 }
 
-.btn-detail:hover {
-    transform: translateY(-2px);
-    background: var(--bronze-hi);
-    color: var(--bronze-ink);
-    box-shadow: 0 8px 20px rgba(201, 151, 63, 0.28);
+.arsip-cta i {
+    font-style: normal;
+    transition: transform 0.3s ease;
 }
 
-.btn-detail:active {
-    transform: scale(0.97);
+.arsip-card:hover .arsip-cta i {
+    transform: translateX(6px);
+}
+
+.arsip-cta:hover {
+    color: var(--bronze-hi);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    [data-reveal] {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .arsip-media img {
+        filter: none;
+    }
 }
