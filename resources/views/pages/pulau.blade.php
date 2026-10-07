@@ -31,8 +31,8 @@
                 @endif
 
                 <!-- LIST DATA -->
-                @foreach ($alat as $index => $item)
-                    <div class="col-12 col-sm-6 col-md-4" data-aos="fade-up" data-aos-delay="{{ ($index % 6) * 100 }}">
+                @foreach ($alat as $item)
+                    <div class="col-12 col-sm-6 col-md-4">
 
                         <x-card :item="$item" />
 
