@@ -1,39 +1,25 @@
-/* Cursor glow: cahaya perunggu dua lapis mengikuti kursor (pointer presisi saja). */
-(function () {
-    if (!window.matchMedia('(pointer:fine)').matches) return;
+// Jejak tangga nada: kursor menabur angka laras yang memudar.
+document.addEventListener('DOMContentLoaded', () => {
+    if (!window.matchMedia('(pointer: fine)').matches) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-    var glow = document.getElementById('cursorGlow');
-    var core = document.getElementById('cursorCore');
-    if (!glow || !core) return;
+    const GLYPHS = ['1', '2', '3', '5', '6', '♪'];
+    const MAX = 26;
+    let last = 0, live = 0;
 
-    var gx = window.innerWidth / 2, gy = window.innerHeight / 3;
-    var cx = gx, cy = gy;
-    var tx = gx, ty = gy, shown = false;
+    document.addEventListener('pointermove', (e) => {
+        const now = performance.now();
+        if (now - last < 70 || live >= MAX) return;
+        last = now;
 
-    window.addEventListener('pointermove', function (e) {
-        tx = e.clientX;
-        ty = e.clientY;
-        if (!shown) {
-            shown = true;
-            glow.classList.add('on');
-            core.classList.add('on');
-        }
+        const s = document.createElement('span');
+        s.className = 'note-trail';
+        s.textContent = GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
+        s.style.left = e.clientX + 'px';
+        s.style.top = e.clientY + 'px';
+        s.style.fontSize = (12 + Math.random() * 10) + 'px';
+        document.body.appendChild(s);
+        live++;
+        s.addEventListener('animationend', () => { s.remove(); live--; });
     }, { passive: true });
-
-    document.documentElement.addEventListener('pointerleave', function () {
-        glow.classList.remove('on');
-        core.classList.remove('on');
-        shown = false;
-    });
-
-    (function loop() {
-        gx += (tx - gx) * 0.08;
-        gy += (ty - gy) * 0.08;
-        cx += (tx - cx) * 0.22;
-        cy += (ty - cy) * 0.22;
-        glow.style.transform = 'translate3d(' + gx + 'px,' + gy + 'px,0)';
-        core.style.transform = 'translate3d(' + cx + 'px,' + cy + 'px,0)';
-        requestAnimationFrame(loop);
-    })();
-})();
+});

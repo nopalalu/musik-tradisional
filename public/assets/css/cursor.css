@@ -1,50 +1,25 @@
 /* ===============================
-   CURSOR GLOW — cahaya perunggu
-   dua lapis: halo lebar + inti terang.
-   Hanya pointer presisi; sentuh = mati.
-=============================== */
-
-#cursorGlow,
-#cursorCore {
+   CURSOR — jejak tangga nada
+   Setiap gerak kursor menabur angka laras pelog.
+   =============================== */
+.note-trail {
     position: fixed;
-    top: 0;
-    left: 0;
+    z-index: 60;
     pointer-events: none;
-    z-index: 0;
+    color: var(--bronze);
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 600;
     opacity: 0;
-    transition: opacity 0.6s ease;
-    will-change: transform;
-    mix-blend-mode: screen;
+    transform: translate(-50%, -50%);
+    text-shadow: 0 0 14px rgba(210, 162, 76, 0.55);
+    animation: noteTrail 1.15s ease-out forwards;
 }
-
-#cursorGlow {
-    width: 780px;
-    height: 780px;
-    margin: -390px 0 0 -390px;
-    background: radial-gradient(circle,
-            rgba(201, 151, 63, 0.16) 0%,
-            rgba(201, 151, 63, 0.07) 38%,
-            transparent 65%);
+@keyframes noteTrail {
+    0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.6) rotate(-8deg); }
+    18%  { opacity: 0.95; }
+    100% { opacity: 0; transform: translate(-50%, -190%) scale(1.12) rotate(6deg); }
 }
-
-#cursorCore {
-    width: 240px;
-    height: 240px;
-    margin: -120px 0 0 -120px;
-    background: radial-gradient(circle,
-            rgba(255, 214, 140, 0.28) 0%,
-            rgba(201, 151, 63, 0.10) 45%,
-            transparent 70%);
-}
-
-#cursorGlow.on,
-#cursorCore.on {
-    opacity: 1;
-}
-
 @media (prefers-reduced-motion: reduce) {
-    #cursorGlow,
-    #cursorCore {
-        display: none;
-    }
+    .note-trail { display: none; }
 }

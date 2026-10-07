@@ -88,7 +88,7 @@
                 @endif
 
                 <button id="btnQuiz" class="btn-primary quiz-trigger">
-                    Coba Kuis 🎯
+                    Coba Kuis
                 </button>
 
             </div>

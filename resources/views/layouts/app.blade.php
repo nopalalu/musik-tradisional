@@ -50,8 +50,6 @@
     <script>setTimeout(function(){var c=document.getElementById('introCurtain');if(c){c.style.display='none';}document.body.classList.remove('intro-lock');},6000);</script>
 
     <!-- ================= CURSOR GLOW ================= -->
-    <div id="cursorGlow" aria-hidden="true"></div>
-    <div id="cursorCore" aria-hidden="true"></div>
 
     <!-- GLOBAL ELEMENT -->
     <div id="tooltip"></div>

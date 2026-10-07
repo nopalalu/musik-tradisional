@@ -19,7 +19,7 @@
 
                 <div class="quiz-meta">
                     <span>Soal <span id="currentStep">1</span> / <span id="totalStep">10</span></span>
-                    <span class="quiz-sub">Gas terus 🔥</span>
+                    <span class="quiz-sub">Gas terus</span>
                 </div>
 
             </div>

@@ -1,206 +1,44 @@
 /* ===============================
-   HERO — manifesto editorial
-=============================== */
-
-.hero--editorial {
-    min-height: 94vh;
-    display: flex;
-    align-items: center;
-    padding: 130px 24px 70px;
-}
-
-.hero-inner {
-    width: 100%;
-    max-width: 1120px;
-    margin: 0 auto;
-}
-
-.hero-eyebrow {
-    font-size: 12px;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    color: var(--bronze);
-    font-weight: 600;
-    margin-bottom: 22px;
-    animation: heroRise 0.9s cubic-bezier(0.22, 0.8, 0.3, 1) both;
-}
-
-.hero-title {
-    font-family: var(--serif);
-    font-size: clamp(44px, 9vw, 108px);
-    font-weight: 600;
-    letter-spacing: -1.5px;
-    line-height: 1.04;
-    margin-bottom: 8px;
-    color: var(--ink);
-    animation: heroRise 0.9s 0.12s cubic-bezier(0.22, 0.8, 0.3, 1) both;
-}
-
-.hero-title em {
-    font-style: italic;
-    font-weight: 500;
-    color: var(--bronze-hi);
-}
-
-.hero-manifesto {
-    max-width: 600px;
-    font-size: clamp(15px, 2vw, 18px);
-    color: var(--muted);
-    line-height: 1.75;
-    margin-top: 30px;
-    animation: heroRise 0.9s 0.24s cubic-bezier(0.22, 0.8, 0.3, 1) both;
-}
-
-@keyframes heroRise {
-    from {
-        opacity: 0;
-        transform: translateY(34px);
-    }
-    to {
-        opacity: 1;
-        transform: none;
-    }
-}
-
-/* scroll cue */
-.hero-scroll {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    margin-top: 54px;
-    text-decoration: none;
-    font-size: 12px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--bronze);
-    font-weight: 600;
-    animation: heroRise 0.9s 0.36s cubic-bezier(0.22, 0.8, 0.3, 1) both;
-}
-
-.hero-scroll:hover {
-    color: var(--bronze-hi);
-}
-
-.hero-scroll i {
-    display: block;
-    width: 1px;
-    height: 44px;
-    background: var(--bronze);
+   HERO — kompak, alat di awal
+   =============================== */
+.hero--play {
+    padding: 96px 20px 84px;
+    text-align: center;
     position: relative;
     overflow: hidden;
 }
-
-.hero-scroll i::after {
-    content: "";
-    position: absolute;
-    top: -100%;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--bronze-hi);
-    animation: scrollDrop 1.8s cubic-bezier(0.6, 0, 0.3, 1) infinite;
+.hero-eyebrow {
+    font-size: 12px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--bronze); margin-bottom: 20px; font-weight: 600;
 }
-
-@keyframes scrollDrop {
-    0% { top: -100%; }
-    55% { top: 0; }
-    100% { top: 100%; }
+.hero-title-sm {
+    font-family: var(--serif);
+    font-size: clamp(38px, 6vw, 64px);
+    font-weight: 600; letter-spacing: -0.5px; line-height: 1.1;
+    margin: 0 0 14px; color: var(--ink);
 }
-
-/* ===============================
-   QUIZ CTA (bagian Uji Telinga)
-=============================== */
-
-.quiz-cta {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-    margin-top: 30px;
+.hero-title-sm em { font-style: italic; color: var(--bronze); }
+.hero-sub {
+    font-size: 16px; color: var(--muted);
+    max-width: 580px; margin: 0 auto; line-height: 1.7;
 }
-
-.quiz-info {
-    font-size: 13px;
-    color: var(--bronze-hi);
-    background: rgba(201, 151, 63, 0.1);
-    border: 1px solid var(--line);
-    padding: 6px 14px;
-    border-radius: 999px;
+.hero--play .gamelan { margin-top: 48px; }
+.scroll-cue {
+    margin-top: 56px; font-size: 11px; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--muted);
+    display: flex; flex-direction: column; align-items: center; gap: 12px;
 }
-
-.quiz-progress-bar {
-    width: 220px;
-    height: 6px;
-    background: #2b2417;
-    border-radius: 10px;
-    overflow: hidden;
+.scroll-cue span {
+    width: 1px; height: 44px;
+    background: linear-gradient(var(--bronze), transparent);
+    animation: cueDrop 1.8s ease-in-out infinite;
 }
-
-.quiz-progress-fill {
-    height: 100%;
-    background: var(--bronze);
-    transition: 0.4s;
+@keyframes cueDrop {
+    0% { transform: scaleY(0); transform-origin: top; }
+    45% { transform: scaleY(1); transform-origin: top; }
+    55% { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
 }
-
-.btn-quiz-hero {
-    padding: 13px 32px;
-    border-radius: 999px;
-    background: var(--bronze);
-    color: var(--bronze-ink);
-    font-weight: 700;
-    border: none;
-    cursor: pointer;
-    transition: 0.25s;
-    text-decoration: none;
-    font-size: 15px;
-}
-
-.btn-quiz-hero:hover {
-    transform: translateY(-2px);
-    background: var(--bronze-hi);
-    box-shadow: 0 10px 26px rgba(201, 151, 63, 0.28);
-    color: var(--bronze-ink);
-}
-
-.btn-quiz-hero.locked {
-    opacity: 0.55;
-    cursor: not-allowed;
-    filter: grayscale(0.35);
-    pointer-events: auto;
-}
-
-.quiz-note {
-    font-size: 13px;
-    color: var(--muted);
-}
-
-/* MOBILE */
 @media (max-width: 768px) {
-    .hero--editorial {
-        min-height: 88vh;
-        padding: 110px 20px 60px;
-    }
-
-    .hero-title {
-        font-size: clamp(40px, 12vw, 64px);
-    }
-
-    .btn-quiz-hero {
-        width: 100%;
-        max-width: 280px;
-        text-align: center;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .hero-eyebrow,
-    .hero-title,
-    .hero-manifesto,
-    .hero-scroll {
-        animation: none;
-    }
-
-    .hero-scroll i::after {
-        animation: none;
-    }
+    .hero--play { padding: 72px 16px 64px; }
 }
