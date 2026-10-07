@@ -51,6 +51,7 @@
 
     <!-- ================= CURSOR GLOW ================= -->
     <div id="cursorGlow" aria-hidden="true"></div>
+    <div id="cursorCore" aria-hidden="true"></div>
 
     <!-- GLOBAL ELEMENT -->
     <div id="tooltip"></div>
