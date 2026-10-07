@@ -1,28 +1,107 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="hero">
-        <div class="hero-content">
-
-            {{-- ===== EYEBROW ===== --}}
+    {{-- ============ HERO: manifesto editorial ============ --}}
+    <header class="hero hero--editorial">
+        <div class="hero-inner">
             <p class="hero-eyebrow">Arsip Bunyi Nusantara</p>
-
-            {{-- ===== TITLE ===== --}}
             <h1 class="hero-title">
-                Alat Musik Tradisional Indonesia
+                Dengar Indonesia,<br>
+                <em>dari bilah perunggu hingga dawai bambu.</em>
             </h1>
-
-            <div class="hero-rule"></div>
-
-            {{-- ===== SUBTITLE (DIPERSINGKAT) ===== --}}
-            <p class="hero-subtitle">
-                Jelajahi budaya Nusantara secara interaktif
+            <p class="hero-manifesto">
+                MuSantara mendokumentasikan alat musik tradisional Indonesia &mdash;
+                bunyinya, asalnya, ceritanya. Ketuk gamelannya, telusuri per pulau,
+                atau buka arsipnya satu per satu.
             </p>
+            <a href="#ruang-bunyi" class="hero-scroll">
+                <span>Gulir untuk mendengar</span><i></i>
+            </a>
+        </div>
+    </header>
 
-            {{-- ===== CTA RINGKAS ===== --}}
-            <div class="quiz-cta">
+    {{-- ============ RUANG BUNYI: ensemble gamelan ============ --}}
+    <section class="gamelan-section" id="ruang-bunyi">
+        <div class="container">
+            <p class="section-eyebrow" data-reveal>Ruang Bunyi</p>
+            <h2 class="section-title" data-reveal>Satu set gamelan mini</h2>
+            <p class="section-sub" data-reveal>Lima alat sungguhan, lima bunyi berbeda &mdash; dari gong ageng yang dalam sampai bonang yang nyaring. Ketuk sesukamu.</p>
 
-                {{-- TEXT --}}
+            <div class="gamelan-pads" data-reveal>
+                <button type="button" class="gamelan-pad pad-gong" data-instrument="gong" data-freq="65.41" aria-label="Gong Ageng">
+                    <span class="pad-disc"><span class="pad-boss"></span></span>
+                    <span class="pad-name">Gong Ageng</span>
+                </button>
+                <button type="button" class="gamelan-pad pad-kempul" data-instrument="kempul" data-freq="98.00" aria-label="Kempul">
+                    <span class="pad-disc"><span class="pad-boss"></span></span>
+                    <span class="pad-name">Kempul</span>
+                </button>
+                <button type="button" class="gamelan-pad pad-kenong" data-instrument="kenong" data-freq="130.81" aria-label="Kenong">
+                    <span class="pad-disc"><span class="pad-boss"></span></span>
+                    <span class="pad-name">Kenong</span>
+                </button>
+                <button type="button" class="gamelan-pad pad-saron" data-instrument="saron" data-freq="164.81" aria-label="Saron">
+                    <span class="pad-disc"><span class="pad-boss"></span></span>
+                    <span class="pad-name">Saron</span>
+                </button>
+                <button type="button" class="gamelan-pad pad-bonang" data-instrument="bonang" data-freq="196.00" aria-label="Bonang">
+                    <span class="pad-disc"><span class="pad-boss"></span></span>
+                    <span class="pad-name">Bonang</span>
+                </button>
+            </div>
+
+            <p class="gamelan-hint" data-reveal>Nyalakan suara perangkatmu</p>
+        </div>
+    </section>
+
+    {{-- ============ TELUSURI ============ --}}
+    <section class="browse-section">
+        <div class="container">
+            <div class="search-section">
+                <p class="section-eyebrow" data-reveal>Telusuri Arsip</p>
+                <h2 class="section-title" data-reveal>Cari alatnya</h2>
+                <div class="search-wrapper" data-reveal>
+                    <x-search-box />
+                </div>
+
+                {{-- RESULT SEARCH (JANGAN DIHAPUS) --}}
+                <div id="searchResults" class="row g-4 mt-4"></div>
+            </div>
+        </div>
+    </section>
+
+    {{-- ============ PULAU ============ --}}
+    <section class="islands-section">
+        <div class="container">
+            <p class="section-eyebrow" data-reveal>Jelajah Wilayah</p>
+            <h2 class="section-title" data-reveal>Pilih Pulau</h2>
+            <div data-reveal>
+                @include('partials.map')
+            </div>
+        </div>
+    </section>
+
+    {{-- ============ KOLEKSI ============ --}}
+    <section class="collection-section">
+        <div class="container">
+            <p class="section-eyebrow" data-reveal>Koleksi Pilihan</p>
+            <h2 class="section-title" data-reveal>Buka arsipnya</h2>
+            <div class="collection-grid">
+                @foreach ($featured as $item)
+                    <x-card :item="$item" />
+                @endforeach
+            </div>
+        </div>
+    </section>
+
+    {{-- ============ QUIZ ============ --}}
+    <section class="quiz-invite">
+        <div class="container container-narrow">
+            <p class="section-eyebrow" data-reveal>Uji Telinga</p>
+            <h2 class="section-title" data-reveal>Seberapa kenal kamu dengan bunyinya?</h2>
+            <p class="section-sub" data-reveal>Buka tiga arsip alat musik, dan kunci kuisnya akan terbuka.</p>
+
+            <div class="quiz-cta" data-reveal>
                 @php
                     $raw = session('explored_count', 0);
                     $count = min($raw, 3);
@@ -37,11 +116,9 @@
                 </div>
 
                 <div class="quiz-progress-bar">
-                    <div class="quiz-progress-fill" style="width: {{ ($count / 3) * 100 }}%">
-                    </div>
+                    <div class="quiz-progress-fill" style="width: {{ ($count / 3) * 100 }}%"></div>
                 </div>
 
-                {{-- BUTTON --}}
                 @if (session('explored_count', 0) < 3)
                     <button id="quizLocked" class="btn-quiz-hero locked">
                         Mulai Kuis
@@ -55,57 +132,7 @@
                         Mulai Kuis
                     </a>
                 @endif
-
             </div>
-
-            {{-- ===== SEARCH ===== --}}
-            <div class="search-section">
-                <div class="search-wrapper">
-                    <x-search-box />
-                </div>
-            </div>
-
         </div>
-
-        {{-- RESULT SEARCH (JANGAN DIHAPUS) --}}
-        <div id="searchResults" class="row g-4 mt-4"></div>
-    </div>
-
-
-        {{-- ===== RUANG BUNYI ===== --}}
-    <section class="gamelan-section" data-reveal>
-        <p class="gamelan-eyebrow">Ruang Bunyi</p>
-        <h2 class="gamelan-title">Sentuh &amp; Dengarkan</h2>
-        <p class="gamelan-sub">Lima bilah perunggu bernada pentatonik &mdash; ketuk bilahnya untuk membunyikan.</p>
-        <div class="gamelan-pads" id="gamelanPads">
-            <button type="button" class="gamelan-pad" data-freq="261.63" aria-label="Nada 1"><span class="pad-boss"></span><span class="pad-num">1</span></button>
-            <button type="button" class="gamelan-pad" data-freq="293.66" aria-label="Nada 2"><span class="pad-boss"></span><span class="pad-num">2</span></button>
-            <button type="button" class="gamelan-pad" data-freq="329.63" aria-label="Nada 3"><span class="pad-boss"></span><span class="pad-num">3</span></button>
-            <button type="button" class="gamelan-pad" data-freq="392.00" aria-label="Nada 5"><span class="pad-boss"></span><span class="pad-num">5</span></button>
-            <button type="button" class="gamelan-pad" data-freq="440.00" aria-label="Nada 6"><span class="pad-boss"></span><span class="pad-num">6</span></button>
-        </div>
-        <p class="gamelan-hint">&#128266; Nyalakan suara perangkatmu</p>
     </section>
-
-<div class="container container-custom">
-
-        {{-- ===== MAP ===== --}}
-        <h2 class="section-title reveal">Pilih Pulau</h2>
-
-        <div class="reveal">
-            @include('partials.map')
-        </div>
-
-        {{-- ===== REKOMENDASI ===== --}}
-        <h2 class="section-title reveal">Rekomendasi Alat Musik</h2>
-
-        <div class="row g-4">
-            @foreach ($featured as $item)
-                <div class="col-md-4">
-                    <x-card :item="$item" />
-                </div>
-            @endforeach
-        </div>
-
-    </div>
 @endsection
