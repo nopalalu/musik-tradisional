@@ -75,8 +75,8 @@
     }
 
     mark {
-        background: #22c55e;
-        color: black;
+        background: var(--bronze);
+        color: var(--bronze-ink);
         padding: 2px 4px;
         border-radius: 4px;
     }
