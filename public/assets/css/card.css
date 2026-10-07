@@ -1,57 +1,53 @@
+/* ===============================
+   CARD — kartu katalog arsip
+   Flat warm-charcoal, hairline perunggu.
+   Tanpa glass, tanpa gradient.
+=============================== */
+
 .card-custom {
     display: flex;
     flex-direction: column;
     height: 100%;
-
-    background: rgba(30, 41, 59, 0.6);
-    border-radius: 18px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
     overflow: hidden;
-
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-
-    transition: all 0.35s ease;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.28);
 }
 
-/* HOVER */
 .card-custom:hover {
     transform: translateY(-6px);
-    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+    border-color: var(--line-strong);
+    box-shadow: 0 22px 48px rgba(0, 0, 0, 0.5);
 }
 
 /* IMAGE */
 .card-img-wrapper {
     position: relative;
-    height: 180px;
+    height: 190px;
     overflow: hidden;
-    border-radius: 12px;
 }
 
 .card-img-wrapper img {
-    width: calc(100% + 2px);
-    height: calc(100% + 2px);
-    margin: -1px;
-
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    transform: scale(1.01) translateZ(0);
-    will-change: transform;
-    backface-visibility: hidden;
-
-    transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transform: scale(1.01);
+    transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-.card-custom:hover img {
-    transform: scale(1.08) translateZ(0);
+.card-custom:hover .card-img-wrapper img {
+    transform: scale(1.07);
 }
 
-/* OVERLAY */
+/* OVERLAY — warm, bukan biru */
 .img-overlay {
     position: absolute;
     inset: 0;
     background: linear-gradient(to top,
-            rgba(15, 23, 42, 0.9),
-            rgba(15, 23, 42, 0.3),
+            rgba(20, 17, 10, 0.85),
+            rgba(20, 17, 10, 0.25),
             transparent);
 }
 
@@ -60,66 +56,54 @@
     display: flex;
     flex-direction: column;
     flex: 1;
-    padding: 16px;
+    padding: 18px 18px 20px;
 }
 
-/* TITLE */
-.card-title {
+/* TITLE — serif */
+.card-body h5 {
+    font-family: var(--serif);
     font-weight: 600;
-    font-size: 16px;
-    margin-bottom: 6px;
-    color: #f1f5f9;
+    font-size: 20px;
+    letter-spacing: 0.2px;
+    margin-bottom: 8px;
+    color: var(--ink);
 }
 
 /* DESC */
 .card-desc {
-    font-size: 13px;
-    opacity: 0.75;
-    line-height: 1.5;
-
+    font-size: 13.5px;
+    color: var(--muted);
+    line-height: 1.6;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
-
     margin-bottom: auto;
-    /* 🔥 bikin tombol turun ke bawah */
 }
 
-/* BUTTON */
+/* BUTTON — perunggu solid */
 .btn-detail {
     display: block;
-    margin-top: 16px;
-
+    margin-top: 18px;
     text-align: center;
-    padding: 10px;
-    border-radius: 12px;
-
-    background: linear-gradient(135deg, #16a34a, #15803d);
-    color: #ecfdf5;
+    padding: 11px;
+    border-radius: 10px;
+    background: var(--bronze);
+    color: var(--bronze-ink);
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 14px;
-
     transition: all 0.25s ease;
-
-    /* 🔥 shadow lebih soft */
-    box-shadow: 0 4px 10px rgba(22, 163, 74, 0.18);
 }
 
-/* HOVER */
 .btn-detail:hover {
     transform: translateY(-2px);
-
-    /* 🔥 glow tipis */
-    box-shadow: 0 6px 16px rgba(22, 163, 74, 0.25);
-
-    background: linear-gradient(135deg, #0a4b22, #106330);
+    background: var(--bronze-hi);
+    color: var(--bronze-ink);
+    box-shadow: 0 8px 20px rgba(201, 151, 63, 0.28);
 }
 
-/* ACTIVE (klik) */
 .btn-detail:active {
     transform: scale(0.97);
-    box-shadow: 0 2px 6px rgba(22, 163, 74, 0.2);
 }
