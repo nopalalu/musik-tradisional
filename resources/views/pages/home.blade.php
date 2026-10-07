@@ -72,7 +72,22 @@
     </div>
 
 
-    <div class="container container-custom">
+        {{-- ===== RUANG BUNYI ===== --}}
+    <section class="gamelan-section" data-reveal>
+        <p class="gamelan-eyebrow">Ruang Bunyi</p>
+        <h2 class="gamelan-title">Sentuh &amp; Dengarkan</h2>
+        <p class="gamelan-sub">Lima bilah perunggu dalam laras slendro &mdash; ketuk bilahnya untuk membunyikan.</p>
+        <div class="gamelan-pads" id="gamelanPads">
+            <button type="button" class="gamelan-pad" data-freq="261.63" aria-label="Nada 1"><span class="pad-boss"></span><span class="pad-num">1</span></button>
+            <button type="button" class="gamelan-pad" data-freq="293.66" aria-label="Nada 2"><span class="pad-boss"></span><span class="pad-num">2</span></button>
+            <button type="button" class="gamelan-pad" data-freq="329.63" aria-label="Nada 3"><span class="pad-boss"></span><span class="pad-num">3</span></button>
+            <button type="button" class="gamelan-pad" data-freq="392.00" aria-label="Nada 5"><span class="pad-boss"></span><span class="pad-num">5</span></button>
+            <button type="button" class="gamelan-pad" data-freq="440.00" aria-label="Nada 6"><span class="pad-boss"></span><span class="pad-num">6</span></button>
+        </div>
+        <p class="gamelan-hint">&#128266; Nyalakan suara perangkatmu</p>
+    </section>
+
+<div class="container container-custom">
 
         {{-- ===== MAP ===== --}}
         <h2 class="section-title reveal">Pilih Pulau</h2>
@@ -86,7 +101,7 @@
 
         <div class="row g-4">
             @foreach ($featured as $item)
-                <div class="col-md-4 reveal">
+                <div class="col-md-4">
                     <x-card :item="$item" />
                 </div>
             @endforeach
