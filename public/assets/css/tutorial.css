@@ -88,7 +88,7 @@
 #tutorialBar {
     height: 100%;
     width: 25%;
-    background: linear-gradient(90deg, #22c55e, #4ade80);
+    background: var(--bronze);
     transition: 0.3s;
 }
 
@@ -112,7 +112,7 @@
 }
 
 #tutorialNext {
-    background: linear-gradient(135deg, #22c55e, #16a34a);
+    background: var(--bronze);
     color: white;
 }
 
