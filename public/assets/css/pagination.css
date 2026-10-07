@@ -45,15 +45,15 @@
 
 /* HOVER */
 .custom-pagination .page-link:hover {
-    background: #22c55e;
-    color: #fff;
+    background: var(--bronze);
+    color: var(--bronze-ink);
     transform: translateY(-2px);
 }
 
 /* ACTIVE */
 .custom-pagination .active .page-link {
-    background: #22c55e;
-    color: white;
+    background: var(--bronze);
+    color: var(--bronze-ink);
     font-weight: bold;
 }
 
